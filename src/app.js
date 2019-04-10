@@ -1,17 +1,8 @@
-function mongoConnect (MongoClient) {
-  return new Promise((resolve, reject) => {
-    MongoClient.connect('mongodb://localhost:27017/clubeextra', { useNewUrlParser: true }, function(err, client) {
-      if(err) reject(err)
-      else resolve(client.db('clubeextra'))
-    })
-  })
-}
-
 module.exports = class {
-  constructor ({ axios, categories, MongoClient, formatProductUrl }) {
+  constructor ({ axios, categories, mongoConnect, formatProductUrl }) {
     this.axios = axios
     this.categories = categories
-    this.db = mongoConnect(MongoClient)
+    this.db = mongoConnect
     this.formatProductUrl = formatProductUrl
   }
 

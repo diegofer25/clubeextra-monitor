@@ -1,4 +1,6 @@
-const App = require('./app')
+const App = require('./src/app')
+const MongoClient = require("mongodb").MongoClient
+const mongoConnect = require('./src/mongodbConnection')
 
 const axiosOptions = {
   headers: {
@@ -10,7 +12,7 @@ const axiosOptions = {
 }
 
 const dependencies = {
-  MongoClient: require("mongodb").MongoClient,
+  mongoConnect: mongoConnect(MongoClient),
   axios: require('axios').create(axiosOptions),
   categories: require('./categories').categories,
   formatProductUrl: require('./format-product-url')
